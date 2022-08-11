@@ -75,3 +75,8 @@ const data = {
   ],
 };
 export default data;
+
+
+//https://first-westzone-app.herokuapp.com/ deployed to Heroku
+//on this email universaltruth002@gmail.com
+//MONGODB_URL: mongodb+srv://westzone:Karama2022DB@cluster0.4hnpa.mongodb.net/test
