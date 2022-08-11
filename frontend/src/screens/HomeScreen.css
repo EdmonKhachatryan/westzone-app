@@ -1,0 +1,8 @@
+.row.center {
+    justify-content: center;
+  }
+
+  /* Carousel */
+.carousel .slide img {
+  max-width: 30rem;
+}

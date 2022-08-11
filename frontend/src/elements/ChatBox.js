@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
+import './ChatBox.css';
 
 const ENDPOINT =
   window.location.host.indexOf('localhost') >= 0
@@ -69,7 +70,7 @@ export default function ChatBox(props) {
           <i className="fa fa-support" />
         </button>
       ) : (
-        <div className="card card-body">
+        <div className="card cardBody">
           <div className="row">
             <strong>Support </strong>
             <button type="button" onClick={closeHandler}>

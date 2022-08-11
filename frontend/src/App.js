@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { signout } from './actions/userActions';
-import AdminRoute from './components/AdminRoute';
-import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './elements/AdminRoute';
+import PrivateRoute from './elements/PrivateRoute';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import OrderHistoryScreen from './screens/OrderHistoryScreen';
@@ -20,17 +20,18 @@ import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
 import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
-import SellerRoute from './components/SellerRoute';
+import SellerRoute from './elements/SellerRoute';
 import SellerScreen from './screens/SellerScreen';
-import SearchBox from './components/SearchBox';
+import SearchBox from './elements/SearchBox';
 import SearchScreen from './screens/SearchScreen';
 import { listProductCategories } from './actions/productActions';
-import LoadingBox from './components/LoadingBox';
-import MessageBox from './components/MessageBox';
+import LoadingBox from './elements/LoadingBox';
+import MessageBox from './elements/MessageBox';
 import MapScreen from './screens/MapScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SupportScreen from './screens/SupportScreen';
-import ChatBox from './components/ChatBox';
+import ChatBox from './elements/ChatBox';
+import './App.css';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -54,18 +55,18 @@ function App() {
   }, [dispatch]);
   return (
     <BrowserRouter>
-      <div className="grid-container">
+      <div className="gridContainer">
         <header className="row">
           <div>
             <button
               type="button"
-              className="open-sidebar"
+              className="openSidebar"
               onClick={() => setSidebarIsOpen(true)}
             >
               <i className="fa fa-bars"></i>
             </button>
             <Link className="brand" to="/">
-              amazona
+              westzone
             </Link>
           </div>
           <div>
@@ -83,7 +84,7 @@ function App() {
                 <Link to="#">
                   {userInfo.name} <i className="fa fa-caret-down"></i>{' '}
                 </Link>
-                <ul className="dropdown-content">
+                <ul className="dropdownContent">
                   <li>
                     <Link to="/profile">User Profile</Link>
                   </li>
@@ -105,7 +106,7 @@ function App() {
                 <Link to="#admin">
                   Seller <i className="fa fa-caret-down"></i>
                 </Link>
-                <ul className="dropdown-content">
+                <ul className="dropdownContent">
                   <li>
                     <Link to="/productlist/seller">Products</Link>
                   </li>
@@ -120,7 +121,7 @@ function App() {
                 <Link to="#admin">
                   Admin <i className="fa fa-caret-down"></i>
                 </Link>
-                <ul className="dropdown-content">
+                <ul className="dropdownContent">
                   <li>
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
@@ -147,7 +148,7 @@ function App() {
               <strong>Categories</strong>
               <button
                 onClick={() => setSidebarIsOpen(false)}
-                className="close-sidebar"
+                className="closeSidebar"
                 type="button"
               >
                 <i className="fa fa-close"></i>

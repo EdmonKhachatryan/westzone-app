@@ -1,4 +1,9 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import {
+  legacy_createStore as createStore,
+  compose,
+  applyMiddleware,
+  combineReducers,
+} from 'redux';
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducers';
 import {

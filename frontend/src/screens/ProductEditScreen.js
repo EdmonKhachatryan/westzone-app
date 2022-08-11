@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { detailsProduct, updateProduct } from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+import LoadingBox from '../elements/LoadingBox';
+import MessageBox from '../elements/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
 export default function ProductEditScreen(props) {

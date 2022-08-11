@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './SearchBox.css';
 
 export default function SearchBox() {
   const navigate = useNavigate();

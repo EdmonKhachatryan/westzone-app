@@ -2,16 +2,19 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Chart from 'react-google-charts';
 import { summaryOrder } from '../actions/orderActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+import LoadingBox from '../elements/LoadingBox';
+import MessageBox from '../elements/MessageBox';
+import './DashboardScreen.css';
 
 export default function DashboardScreen() {
   const orderSummary = useSelector((state) => state.orderSummary);
   const { loading, summary, error } = orderSummary;
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(summaryOrder());
   }, [dispatch]);
+
   return (
     <div>
       <div className="row">
@@ -25,30 +28,30 @@ export default function DashboardScreen() {
         <>
           <ul className="row summary">
             <li>
-              <div className="summary-title color1">
+              <div className="summaryTitle color1">
                 <span>
                   <i className="fa fa-users" /> Users
                 </span>
               </div>
-              <div className="summary-body">{summary.users[0].numUsers}</div>
+              <div className="summaryBody">{summary.users[0].numUsers} </div>
             </li>
             <li>
-              <div className="summary-title color2">
+              <div className="summaryTitle color2">
                 <span>
                   <i className="fa fa-shopping-cart" /> Orders
                 </span>
               </div>
-              <div className="summary-body">
+              <div className="summaryBody">
                 {summary.orders[0] ? summary.orders[0].numOrders : 0}
               </div>
             </li>
             <li>
-              <div className="summary-title color3">
+              <div className="summaryTitle color3">
                 <span>
                   <i className="fa fa-money" /> Sales
                 </span>
               </div>
-              <div className="summary-body">
+              <div className="summaryBody">
                 $
                 {summary.orders[0]
                   ? summary.orders[0].totalSales.toFixed(2)
@@ -58,9 +61,26 @@ export default function DashboardScreen() {
           </ul>
           <div>
             <div>
+              <h2>Categories</h2>
+              {summary.productCategories.length === 0 ? (
+                <MessageBox>No Category Yet</MessageBox>
+              ) : (
+                <Chart
+                  width="100%"
+                  height="500px"
+                  chartType="PieChart"
+                  loader={<div>Loading Chart</div>}
+                  data={[
+                    ['Category', 'Products'],
+                    ...summary.productCategories.map((x) => [x._id, x.count]),
+                  ]}
+                ></Chart>
+              )}
+            </div>
+            <div>
               <h2>Sales</h2>
               {summary.dailyOrders.length === 0 ? (
-                <MessageBox>No Sale</MessageBox>
+                <MessageBox>No Sales Yet</MessageBox>
               ) : (
                 <Chart
                   width="100%"
@@ -74,23 +94,6 @@ export default function DashboardScreen() {
                 ></Chart>
               )}
             </div>
-          </div>
-          <div>
-            <h2>Categories</h2>
-            {summary.productCategories.length === 0 ? (
-              <MessageBox>No Category</MessageBox>
-            ) : (
-              <Chart
-                width="100%"
-                height="400px"
-                chartType="PieChart"
-                loader={<div>Loading Chart</div>}
-                data={[
-                  ['Category', 'Products'],
-                  ...summary.productCategories.map((x) => [x._id, x.count]),
-                ]}
-              />
-            )}
           </div>
         </>
       )}

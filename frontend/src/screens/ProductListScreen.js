@@ -6,12 +6,13 @@ import {
   deleteProduct,
   listProducts,
 } from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+import LoadingBox from '../elements/LoadingBox';
+import MessageBox from '../elements/MessageBox';
 import {
   PRODUCT_CREATE_RESET,
   PRODUCT_DELETE_RESET,
 } from '../constants/productConstants';
+import './ProductListScreen.css';
 
 export default function ProductListScreen(props) {
   const navigate = useNavigate();

@@ -3,10 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import { detailsUser } from '../actions/userActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import Product from '../components/Product';
-import Rating from '../components/Rating';
+import LoadingBox from '../elements/LoadingBox';
+import MessageBox from '../elements/MessageBox';
+import Product from '../elements/Product';
+import Rating from '../elements/Rating';
+import './SellerScreen.css';
 
 export default function SellerScreen(props) {
   const params = useParams();
@@ -35,7 +36,7 @@ export default function SellerScreen(props) {
         ) : error ? (
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
-          <ul className="card card-body">
+          <ul className="card cardBody">
             <li>
               <div className="row start">
                 <div className="p-1">

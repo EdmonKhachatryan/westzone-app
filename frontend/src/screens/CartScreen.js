@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartActions';
-import MessageBox from '../components/MessageBox';
+import MessageBox from '../elements/MessageBox';
+import './CartScreen.css';
 
 export default function CartScreen(props) {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ export default function CartScreen(props) {
         )}
       </div>
       <div className="col-1">
-        <div className="card card-body">
+        <div className="card cardBody">
           <ul>
             <li>
               <h2>

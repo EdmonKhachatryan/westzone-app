@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { listProducts } from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import Product from '../components/Product';
-import Rating from '../components/Rating';
+import './SearchScreen.css';
+import Product from '../elements/Product';
+import LoadingBox from '../elements/LoadingBox';
+import MessageBox from '../elements/MessageBox';
 import { prices, ratings } from '../utils';
+import Rating from '../elements/Rating';
 
-export default function SearchScreen(props) {
+export default function SearchScreen() {
   const navigate = useNavigate();
   const {
     name = 'all',
@@ -20,6 +21,7 @@ export default function SearchScreen(props) {
     pageNumber = 1,
   } = useParams();
   const dispatch = useDispatch();
+
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
@@ -29,6 +31,7 @@ export default function SearchScreen(props) {
     error: errorCategories,
     categories,
   } = productCategoryList;
+
   useEffect(() => {
     dispatch(
       listProducts({
@@ -53,6 +56,7 @@ export default function SearchScreen(props) {
     const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
     return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
   };
+
   return (
     <div>
       <div className="row">
@@ -74,7 +78,7 @@ export default function SearchScreen(props) {
             <option value="newest">Newest Arrivals</option>
             <option value="lowest">Price: Low to High</option>
             <option value="highest">Price: High to Low</option>
-            <option value="toprated">Avg. Customer Reviews</option>
+            <option value="toprated">Avg. Customer Review</option>
           </select>
         </div>
       </div>
@@ -129,6 +133,14 @@ export default function SearchScreen(props) {
           <div>
             <h3>Avg. Customer Review</h3>
             <ul>
+              <li>
+                <Link
+                  className={'all' === rating ? 'active' : ''}
+                  to={getFilterUrl({ rating: 'all' })}
+                >
+                  Any
+                </Link>
+              </li>
               {ratings.map((r) => (
                 <li key={r.name}>
                   <Link

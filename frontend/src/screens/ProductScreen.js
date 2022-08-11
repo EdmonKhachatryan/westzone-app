@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { createReview, detailsProduct } from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import Rating from '../components/Rating';
+import LoadingBox from '../elements/LoadingBox';
+import MessageBox from '../elements/MessageBox';
+import Rating from '../elements/Rating';
 import { PRODUCT_REVIEW_CREATE_RESET } from '../constants/productConstants';
+import './ProductScreen.css';
 
 export default function ProductScreen(props) {
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ export default function ProductScreen(props) {
               </ul>
             </div>
             <div className="col-1">
-              <div className="card card-body">
+              <div className="card cardBody">
                 <ul>
                   <li>
                     Seller{' '}

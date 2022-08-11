@@ -5,11 +5,12 @@ import {
   StandaloneSearchBox,
   Marker,
 } from '@react-google-maps/api';
-import LoadingBox from '../components/LoadingBox';
+import LoadingBox from '../elements/LoadingBox';
 import Axios from 'axios';
 import { USER_ADDRESS_MAP_CONFIRM } from '../constants/userConstants';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import './MapScreen.css';
 
 const libs = ['places'];
 const defaultLocation = { lat: 45.516, lng: -73.56 };
@@ -95,7 +96,7 @@ export default function MapScreen(props) {
   };
 
   return googleApiKey ? (
-    <div className="full-container">
+    <div className="fullContainer">
       <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
         <GoogleMap
           id="smaple-map"
@@ -109,7 +110,7 @@ export default function MapScreen(props) {
             onLoad={onLoadPlaces}
             onPlacesChanged={onPlacesChanged}
           >
-            <div className="map-input-box">
+            <div className="mapInputBox">
               <input type="text" placeholder="Enter your address"></input>
               <button type="button" className="primary" onClick={onConfirm}>
                 Confirm

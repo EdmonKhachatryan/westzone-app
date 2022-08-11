@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import socketIOClient from 'socket.io-client';
 import { useSelector } from 'react-redux';
-import MessageBox from '../components/MessageBox';
+import MessageBox from '../elements/MessageBox';
+import './SupportScreen.css';
 
 let allUsers = [];
 let allMessages = [];
@@ -111,8 +112,8 @@ export default function SupportScreen() {
   };
 
   return (
-    <div className="row top full-container">
-      <div className="col-1 support-users">
+    <div className="row top fullContainer">
+      <div className="col-1 supportUsers">
         {users.filter((x) => x._id !== userInfo._id).length === 0 && (
           <MessageBox>No Online User Found</MessageBox>
         )}
@@ -140,7 +141,7 @@ export default function SupportScreen() {
             ))}
         </ul>
       </div>
-      <div className="col-3 support-messages">
+      <div className="col-3 supportMessages">
         {!selectedUser._id ? (
           <MessageBox>Select a user to start chat</MessageBox>
         ) : (

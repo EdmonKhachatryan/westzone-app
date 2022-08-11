@@ -1,3 +1,6 @@
+# Westzone ECommerce Website
+![westzone](/template/images/westzone.jpg)
+
 # WESTZONE
 
 # Step 1
@@ -494,14 +497,12 @@
 5. Remove <Route> in SearchBox
 6. Wrap all <Route> in <Routes>
 7. Replace <Route component={Screens}> with <Route element={Screens}>
-8. Replace <PrivateRoute> with <Route element={<PrivateRoute><Screens/></
-PrivateRoute>}/>
+8. Replace <PrivateRoute> with <Route element={<PrivateRoute><Screens/></PrivateRoute>}/>
 9. Replace <AdminRoute> and <SellerRoute> too
 10. Update PrivateRoute, AdminRoute and SellerRoute
 11. Replace navigate() with navigate() from useNavigate
 12. Replace props.match.params.id with const params = useParams();
-13. Replace props.location.search with const { search } = useLocation(); and 
-URLSearchParams
+13. Replace props.location.search with const { search } = useLocation(); and URLSearchParams
 14. Replace props.match.path with const { pathName } = useLocation();
 15. Put userInfo in useEffect in ChatBox, SupportScreen
 16. Updates to Client Rendering APIs in index.js by createRoot
