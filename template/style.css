@@ -10,7 +10,7 @@ body {
 }
 
 /* Layout */
-.grid-container {
+.gridContainer {
   display: grid;
   grid-template-areas:
     'header'
@@ -84,10 +84,10 @@ img.medium {
   border-radius: 0.5rem;
   margin: 1rem;
 }
-.card-body {
+.cardBody {
   padding: 1rem;
 }
-.card-body > * {
+.cardBody > * {
   margin-bottom: 0.5rem;
 }
 .price {

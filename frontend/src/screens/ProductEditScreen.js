@@ -7,7 +7,7 @@ import LoadingBox from '../elements/LoadingBox';
 import MessageBox from '../elements/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
-export default function ProductEditScreen(props) {
+export default function ProductEditScreen() {
   const navigate = useNavigate();
   const params = useParams();
   const { id: productId } = params;
