@@ -60,3 +60,12 @@ button.primary {
 button.block {
     width: 100%;
 }
+
+button.thumbnail {
+  padding: 0;
+}
+
+.imijik {
+  width: 100%;
+  height: 150px;
+}

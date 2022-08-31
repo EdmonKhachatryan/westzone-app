@@ -1,0 +1,19 @@
+.circl {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 10px auto;
+  max-width: 100px;
+  border-radius: 50px;
+  object-fit: fill;
+  border: 2px solid greenyellow;
+
+}
+
+.img {
+
+  width: 100%;
+  height: 150px;
+
+  border-radius: 50px;
+}

@@ -521,3 +521,9 @@
 10. Set database connection in Heroku env variables
 11. Commit and Push
 12. To check website go to this address |https://my-westzone-app.herokuapp.com|
+
+
+# *Step 63 /Finally Upload Product Images on AWS S3\
+1. Edit` ProductScreen.js, ProductEditScreen.js, .env(R), server.js
+2. Create` s3.js file for Routing 
+3. Update productModel

@@ -5,6 +5,8 @@ import { createReview, detailsProduct } from '../actions/productActions';
 import LoadingBox from '../elements/LoadingBox';
 import MessageBox from '../elements/MessageBox';
 import Rating from '../elements/Rating';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import { PRODUCT_REVIEW_CREATE_RESET } from '../constants/productConstants';
 import './ProductScreen.css';
 
@@ -30,6 +32,7 @@ export default function ProductScreen(props) {
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [selectedImage, setSelectedImage] = useState('');
 
   useEffect(() => {
     if (successReviewCreate) {
@@ -65,11 +68,34 @@ export default function ProductScreen(props) {
           <div className="row top">
             <div className="col-2">
               <img
-                className="large"
-                src={product.image}
+                className="medium"
+                src={selectedImage || product.image}
                 alt={product.name}
               ></img>
             </div>
+            <li>
+              <div sm={1} className="small">
+                {[product.image, ...product.images].map((x) => (
+                  <Col key={x}>
+                    <Card>
+                      <button
+                        className="thumbnail"
+                        type="button"
+                        variant="light"
+                        onClick={() => setSelectedImage(x)}
+                      >
+                        <Card.Img
+                          variant="top"
+                          src={x}
+                          alt="product"
+                          className="imijik"
+                        />
+                      </button>
+                    </Card>
+                  </Col>
+                ))}
+              </div>
+            </li>
             <div className="col-1">
               <ul>
                 <li>

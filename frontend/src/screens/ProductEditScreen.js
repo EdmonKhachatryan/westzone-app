@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import './ProductEditScreen.css';
 import { detailsProduct, updateProduct } from '../actions/productActions';
 import LoadingBox from '../elements/LoadingBox';
 import MessageBox from '../elements/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
+import { useNavigate, useParams } from 'react-router-dom';
+import Resizer from 'react-image-file-resizer';
 
 export default function ProductEditScreen() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function ProductEditScreen() {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
+  const [images, setImages] = useState([]);
   const [category, setCategory] = useState('');
   const [countInStock, setCountInStock] = useState('');
   const [brand, setBrand] = useState('');
@@ -41,21 +43,23 @@ export default function ProductEditScreen() {
       setName(product.name);
       setPrice(product.price);
       setImage(product.image);
+      setImages(product.images);
       setCategory(product.category);
       setCountInStock(product.countInStock);
       setBrand(product.brand);
       setDescription(product.description);
     }
   }, [product, dispatch, productId, successUpdate, navigate]);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    // TODO: dispatch update product
     dispatch(
       updateProduct({
         _id: productId,
         name,
         price,
         image,
+        images,
         category,
         brand,
         countInStock,
@@ -63,29 +67,67 @@ export default function ProductEditScreen() {
       })
     );
   };
+
+  //Upload`
   const [loadingUpload, setLoadingUpload] = useState(false);
   const [errorUpload, setErrorUpload] = useState('');
 
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
-  const uploadFileHandler = async (e) => {
+  //const userSignin = useSelector((state) => state.userSignin);
+  //const { userInfo } = userSignin;
+
+  const uploadFileHandler = async (e, forImages) => {
     const file = e.target.files[0];
+    if (file) {
+      for (let i = 0; i < file.length; i++) {
+        Resizer.imageFileResizer(
+          file[i],
+          720,
+          720,
+          'JPEG',
+          100,
+          0,
+          (url) => {
+            console.log(url);
+          },
+          'base64'
+        );
+      }
+    }
     const bodyFormData = new FormData();
     bodyFormData.append('image', file);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+      const { url } = await fetch('/s3Url').then((res) => res.json());
+      console.log(url);
+      await fetch(url, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${userInfo.token}`,
         },
+        body: file,
       });
-      setImage(data);
+
+      const imageUrl = url.split('?')[0];
+      console.log(imageUrl);
+
+      if (forImages) {
+        setImages([...images, imageUrl]);
+      } else {
+        setImage(imageUrl);
+      }
       setLoadingUpload(false);
     } catch (error) {
       setErrorUpload(error.message);
       setLoadingUpload(false);
     }
+  };
+
+  const deleteFileHandler = async (fileName, f) => {
+    console.log(fileName, f);
+    console.log(images);
+    console.log(images.filter((x) => x !== fileName));
+    setImages(images.filter((x) => x !== fileName));
+    alert('Image removed successfully. click Update to apply it');
   };
 
   return (
@@ -122,29 +164,77 @@ export default function ProductEditScreen() {
                 onChange={(e) => setPrice(e.target.value)}
               ></input>
             </div>
-            <div>
-              <label htmlFor="image">Image</label>
+            <div className="row">
+              <label>Avatar</label>
+              {image.length === 0 && <MessageBox>No Image</MessageBox>}
+              <div key={image} className="circl">
+                {' '}
+                <img src={image} alt="d" className="img"></img>
+              </div>
+            </div>
+            <div htmlFor="image" className="mb-3">
+              <label>Image File</label>
               <input
-                id="image"
-                type="text"
-                placeholder="Enter image"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
-              ></input>
+                required
+              />
             </div>
-            <div>
-              <label htmlFor="imageFile">Image File</label>
+            <div htmlFor="imageFile" className="mb-3">
+              <label>Upload Image</label>
               <input
                 type="file"
-                id="imageFile"
-                label="Choose Image"
+                accept="images/*"
                 onChange={uploadFileHandler}
-              ></input>
+              />
               {loadingUpload && <LoadingBox></LoadingBox>}
-              {errorUpload && (
-                <MessageBox variant="danger">{errorUpload}</MessageBox>
-              )}
             </div>
+
+            <div className="row">
+              <label>Avatar</label>
+              {images.length === 0 && <MessageBox>No Image</MessageBox>}
+              {images.map((image) => (
+                <div key={image} className="circl">
+                  {' '}
+                  <img src={image} alt="d" className="img"></img>
+                </div>
+              ))}
+              <button variant="light" onClick={() => deleteFileHandler(image)}>
+                <i className="fa fa-times-circle"></i>
+              </button>
+            </div>
+
+            <div htmlFor="additionalImage" className="mb-3">
+              <label>Additional Images</label>
+              {images.length === 0 && <MessageBox>{errorUpload}</MessageBox>}
+              <ul variant="flush">
+                {images.map((x) => (
+                  <li key={x}>
+                    {x}
+                    <button
+                      variant="light"
+                      onClick={() => deleteFileHandler(x)}
+                    >
+                      <i className="fa fa-times-circle"></i>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div htmlFor="additionalImageFile" className="mb-3">
+              <label>
+                Upload Aditional Image      |O^-^O^-^O|
+                <input
+                  type="file"
+                  multiple
+                  hidden
+                  accept="images/*"
+                  onChange={(e) => uploadFileHandler(e, true)}
+                />{' '}
+              </label>
+              {loadingUpload && <LoadingBox></LoadingBox>}
+            </div>
+
             <div>
               <label htmlFor="category">Category</label>
               <input
