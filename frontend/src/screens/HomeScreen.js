@@ -9,6 +9,7 @@ import { listProducts } from '../actions/productActions';
 import { listTopSellers } from '../actions/userActions';
 import { Link } from 'react-router-dom';
 import './HomeScreen.css';
+import TypewriterEffect from '../elements/TypewriterEffect';
 
 export default function HomeScreen() {
   const dispatch = useDispatch();
@@ -28,6 +29,20 @@ export default function HomeScreen() {
   }, [dispatch]);
   return (
     <div>
+      {loading ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+        <div className="row center">
+          <div className='jumbotron'>
+            <TypewriterEffect
+              text={['Latest Arriv', 'New Arrival', 'Old Arrivals']}
+            />
+          </div>
+        </div>
+      )}
+
       <h2>Top Sellers</h2>
       {loadingSellers ? (
         <LoadingBox></LoadingBox>

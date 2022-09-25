@@ -530,3 +530,7 @@
 
 # *Step 64 /Update Multi-Vendors\
 1. Clear part of Force Order Items From One Seller
+
+# *Step 65 /Implement Typewriter and Brand Animation\
+1. Create Typewriter Effect in HomeScreen.js
+2. Create water Animation for Brand name

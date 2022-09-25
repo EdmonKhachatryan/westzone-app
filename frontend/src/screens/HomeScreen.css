@@ -6,3 +6,10 @@
 .carousel .slide img {
   max-width: 30rem;
 }
+
+.jumbotron {
+  max-width: 30rem;
+  font-size: 5rem;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
