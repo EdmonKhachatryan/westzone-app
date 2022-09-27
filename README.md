@@ -534,3 +534,6 @@
 # *Step 65 /Implement Typewriter and Brand Animation\
 1. Create Typewriter Effect in HomeScreen.js
 2. Create water Animation for Brand name
+
+# *Step 66 /Implement ContentLoader Loading Effect\
+1. Update Product.js with ContentLoader

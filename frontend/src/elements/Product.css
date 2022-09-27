@@ -21,3 +21,15 @@
   .price {
     font-size: 1.6rem;
   }
+
+  .loader {
+    /*display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;*/
+    border: 0.1rem silver solid;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+  }
