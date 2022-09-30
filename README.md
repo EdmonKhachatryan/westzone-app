@@ -1,5 +1,5 @@
 # Westzone ECommerce Website
-![westzone](/template/images/westzone.jpg)
+![westzone](/template/images/westone.jpg)
 
 # WESTZONE
 
@@ -536,4 +536,8 @@
 2. Create water Animation for Brand name
 
 # *Step 66 /Implement ContentLoader Loading Effect\
-1. Update Product.js with ContentLoader
+1. Install |npm i react-content-loader| in Frontend 
+2. Update Product.js with ContentLoader
+
+# *Step 67 /Update Readme\
+1. Just update
