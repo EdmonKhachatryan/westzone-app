@@ -541,3 +541,11 @@
 
 # *Step 67 /Update Readme\
 1. Just update
+
+# *Step 68 /Change Aside to Navbar for Products\
+1. Update App.js, App.css
+2. Update Product.js, Product.css
+3. Update SearchScreen.js, SearchScreen.css
+4. Update HomeScreen.js, HomeScreen.css
+5. Create new screen RecommendScreen.js for recommended products
+6. Create NavBox.js, NavBox.css

@@ -1,15 +1,279 @@
 .row.center {
-    justify-content: center;
-  }
-
-  /* Carousel */
-.carousel .slide img {
-  max-width: 30rem;
+  justify-content: center;
 }
 
-.jumbotron {
-  max-width: 30rem;
-  font-size: 5rem;
-  color: rgb(0, 0, 0);
-  font-weight: bold;
+/* Carousel */
+.carousel .slide img {
+  max-width: 25rem;
+}
+
+.newarrival {
+  display: flex;
+  justify-content: center;
+  padding: 0.1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  font-size: 3rem;
+  background-color: #fff;
+  color: #203040;
+  border-radius: 2rem;
+}
+
+.topseller {
+  display: flex;
+  justify-content: center;
+  padding: 0.1rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  font-size: 3rem;
+  background-color: #fff;
+  color: #203040;
+  border-radius: 2rem;
+}
+
+.app-main {
+  padding-bottom: 60px;
+  background-color: #ededed;
+  padding-top: 20px;
+}
+
+.product-container-root {
+  width: 1190px;
+  margin: 0 auto;
+}
+
+.main-item {
+  margin-top: 10px;
+}
+
+.tag-card {
+  background: #fff;
+}
+
+.tag-card-head {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.tag-card-head {
+  justify-content: space-between;
+  height: 80px;
+}
+
+.card-title-and-tags {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+svg {
+  border: none;
+  vertical-align: middle;
+}
+
+.f-svg-icon-root {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  font-size: 32px;
+  fill: currentColor;
+}
+
+.f-svg-icon-color-inherit {
+  color: inherit;
+}
+
+.tag-card-head .card-title {
+  font-size: 25px;
+  font-weight: 600px;
+  color: #222;
+  line-height: 24px;
+  margin-left: 10px;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+.card-title-and-tags .tag-list {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.button {
+  border: none;
+  vertical-align: middle;
+}
+
+.button {
+  font-family: Cairo, SF Pro Text, Helvetica Neue, Helvetica, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif !important;
+  outline: none;
+}
+
+.tag-card-head .toggle-button {
+  margin-right: 10px;
+}
+
+.f-button-root {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  padding: 0 16px;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  color: #666;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none !important;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /*-webkit-appearance: none;*/
+}
+
+.f-button-round {
+  border-radius: 24px;
+}
+
+.f-button-small {
+  height: 28px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.f-button-primary {
+  border-color: #fedb43;
+  background-color: #fedb43;
+  color: #222;
+}
+
+.f-toggle-button-root {
+  color: #666;
+}
+
+.f-toggle-button-round {
+  border-color: #ccc;
+}
+
+.f-toggle-button-contained.f-toggle-button-round {
+  border-color: #f5f5f5;
+  background-color: #f5f5f5;
+}
+
+.f-toggle-button-contained .f-toggle-button-selected,
+.f-toggle-button-contained:active,
+.f-toggle-button-contained:hover {
+  border-color: #fedb43;
+  background-color: #fedb43;
+  color: #222;
+}
+
+.fd-wall-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fd-wall-column .fd-wall-item {
+  overflow: hidden;
+}
+
+.fd-wall-column {
+  overflow: visible;
+}
+
+.view-more {
+  padding: 10px 0;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.fd-a {
+  color: inherit;
+}
+
+.f-button-root-view {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  padding: 0 16px;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  color: #666;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none !important;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /*-webkit-appearance: none;*/
+}
+
+.f-button-round {
+  border-radius: 24px;
+}
+
+.f-button-primary {
+  border-color: #fedb43;
+  background-color: #fedb43;
+  color: #222;
+}
+
+button .active {
+  color: skyblue
+}
+
+.view-more .f-svg-icon-root {
+  margin-right: -4px;
+}
+
+.f-button-root .f-svg-icon-root {
+  flex-shrink: 0;
+}
+
+.f-svg-icon-color-inherit {
+  color: inherit;
+}
+
+.f-svg-icon-direction-right {
+  transform: rotate(90deg);
+}
+
+svg {
+  border: none;
+  vertical-align: middle;
+}
+
+.f-svg-icon-root {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  font-size: 32px;
+  fill: currentColor;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { signout } from './actions/userActions';
@@ -25,17 +25,16 @@ import SellerScreen from './screens/SellerScreen';
 import SearchBox from './elements/SearchBox';
 import SearchScreen from './screens/SearchScreen';
 import { listProductCategories } from './actions/productActions';
-import LoadingBox from './elements/LoadingBox';
-import MessageBox from './elements/MessageBox';
 import MapScreen from './screens/MapScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SupportScreen from './screens/SupportScreen';
 import ChatBox from './elements/ChatBox';
 import './App.css';
+import NavBox from './elements/NavBox';
+import RecommendScreen from './screens/RecommendScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const { cartItems } = cart;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
@@ -44,12 +43,6 @@ function App() {
     dispatch(signout());
   };
 
-  const productCategoryList = useSelector((state) => state.productCategoryList);
-  const {
-    loading: loadingCategories,
-    error: errorCategories,
-    categories,
-  } = productCategoryList;
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);
@@ -58,13 +51,6 @@ function App() {
       <div className="gridContainer">
         <header className="row">
           <div>
-            <button
-              type="button"
-              className="openSidebar"
-              onClick={() => setSidebarIsOpen(true)}
-            >
-              <i className="fa fa-bars"></i>
-            </button>
             <Link className="brand" to="/">
               westzone
             </Link>
@@ -141,37 +127,9 @@ function App() {
               </div>
             )}
           </div>
+          <NavBox />
         </header>
-        <aside className={sidebarIsOpen ? 'open' : ''}>
-          <ul className="categories">
-            <li>
-              <strong>Categories</strong>
-              <button
-                onClick={() => setSidebarIsOpen(false)}
-                className="closeSidebar"
-                type="button"
-              >
-                <i className="fa fa-close"></i>
-              </button>
-            </li>
-            {loadingCategories ? (
-              <LoadingBox></LoadingBox>
-            ) : errorCategories ? (
-              <MessageBox variant="danger">{errorCategories}</MessageBox>
-            ) : (
-              categories.map((c) => (
-                <li key={c}>
-                  <Link
-                    to={`/search/category/${c}`}
-                    onClick={() => setSidebarIsOpen(false)}
-                  >
-                    {c}
-                  </Link>
-                </li>
-              ))
-            )}
-          </ul>
-        </aside>
+
         <main>
           <Routes>
             <Route path="/seller/:id" element={<SellerScreen />}></Route>
@@ -201,6 +159,16 @@ function App() {
             <Route
               path="/search/name/:name"
               element={<SearchScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/recommend/category/:category"
+              element={<RecommendScreen />}
+              exact
+            ></Route>
+            <Route
+              path="/recommend/category/:category/order/:order/pageNumber/:pageNumber"
+              element={<RecommendScreen />}
               exact
             ></Route>
             <Route
@@ -311,6 +279,11 @@ function App() {
             />
 
             <Route path="/" element={<HomeScreen />} exact></Route>
+            <Route
+              path="/category/:category"
+              element={<HomeScreen />}
+              exact
+            ></Route>
           </Routes>
         </main>
         <footer className="row center">

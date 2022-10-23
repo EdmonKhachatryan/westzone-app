@@ -42,3 +42,168 @@
   /* a === Link */
   font-weight: bold;
 }
+
+.f-svg-icon-color-inherit {
+  color: inherit;
+}
+
+.f-svg-icon-direction-left {
+  transform: rotate(265deg);
+  color: silver;
+}
+
+.f-svg-icon-direction-rightt {
+  transform: rotate(90deg);
+  color: silver;
+}
+
+svg {
+  border: none;
+  vertical-align: middle;
+}
+
+.f-svg-icon-root {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+  font-size: 32px;
+  fill: currentColor;
+}
+
+#app {
+  flex: 1 0 auto;
+}
+
+.root {
+  padding: 10px 0 60px;
+  background: #fff;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.f-container-root {
+  width: 1500px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+aside {
+  display: block;
+}
+
+.sidebar {
+  flex-shrink: 0;
+  width: 222px;
+  margin-right: 20px;
+  margin-top: 58px;
+  padding: 20px;
+  background: #f7f7f7;
+}
+
+.sidebar-title {
+  margin-bottom: 10px;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.f-typography-body {
+  font-size: 14px;
+}
+.f-color-text-primary {
+  color: #222;
+}
+
+.f-typography-weight-normal {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+.fd-a {
+  color: inherit;
+}
+
+.sidebar-category {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  margin-bottom: 5px;
+  padding: 0 10px 0 5px;
+  background: #fff;
+  text-transform: capitalize;
+}
+
+.sidebar-category img {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background: #f7f7f7;
+}
+
+img {
+  border: none;
+  vertical-align: middle;
+}
+
+.sidebar-category .f-typography-root {
+  max-height: 50px;
+  overflow: hidden;
+  line-height: 16px;
+}
+
+.f-typography-body2 {
+  font-size: 14px;
+}
+
+.f-color-text-primary {
+  color: #222;
+}
+
+.f-typography-weight-normal {
+  font-weight: 400;
+}
+
+
+
+main {
+  display: block;
+}
+
+.mainn {
+  flex-grow: 1;
+}
+
+.fd-wall {
+  min-height: 330px;
+}
+
+.fd-wall:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.fd-wall-container {
+  display: block;
+  margin-bottom: -20px;
+}
+
+.fd-wall-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fd-wall-column {
+  margin: 0 -10px;
+  overflow: unset;
+}
