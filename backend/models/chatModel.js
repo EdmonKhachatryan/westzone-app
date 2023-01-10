@@ -1,11 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const chatSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     online: { type: Boolean },
+    isAdmin: { type: Boolean },
     socketId: { type: String },
-    userName: { type: String, required: true },
+    name: { type: String },
     unreadForAdmin: { type: Number, default: 0 },
     unreadForUser: { type: Number, default: 0 },
     lastMessageForAdmin: { type: Date },
@@ -21,6 +22,6 @@ const chatSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-);
-const Chat = mongoose.model('Chat', chatSchema);
-export default Chat;
+)
+const Chat = mongoose.model('Chat', chatSchema)
+export default Chat

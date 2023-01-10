@@ -1,21 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
-import socketIOClient from 'socket.io-client';
-import './ChatBox.css';
+import React, { useEffect, useRef, useState } from 'react'
+import socketIOClient from 'socket.io-client'
+import './ChatBox.css'
 
+let allMessages = []
 const ENDPOINT =
   window.location.host.indexOf('localhost') >= 0
-    ? 'http://127.0.0.1:5000'
-    : window.location.host;
+    ? 'http://127.0.0.1:4000'
+    : window.location.host
 
 export default function ChatBox(props) {
-  const { userInfo } = props;
-  const [socket, setSocket] = useState(null);
-  const uiMessagesRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [messageBody, setMessageBody] = useState('');
+  const { userInfo } = props
+  const [socket, setSocket] = useState(null)
+  const uiMessagesRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const [messageBody, setMessageBody] = useState('')
   const [messages, setMessages] = useState([
     { name: 'Admin', body: 'Hello there, Please ask your question.' },
-  ]);
+  ])
 
   useEffect(() => {
     if (uiMessagesRef.current) {
@@ -23,46 +24,63 @@ export default function ChatBox(props) {
         top: uiMessagesRef.current.clientHeight,
         left: 0,
         behavior: 'smooth',
-      });
+      })
     }
     if (socket) {
-      socket.emit('onLogin', {
-        _id: userInfo._id,
-        name: userInfo.name,
-        isAdmin: userInfo.isAdmin,
-      });
-      socket.on('message', (data) => {
-        setMessages([...messages, { body: data.body, name: data.name }]);
-      });
+      // socket.emit('onLogin', {
+      //   _id: userInfo._id,
+      //   name: userInfo.name,
+      //   isAdmin: userInfo.isAdmin,
+      // })
+      // socket.on('message', (data) => {
+      //   setMessages([...messages, { body: data.body, name: data.name }])
+      // })
+      // socket.on('loadMessages', (data) => {
+      //   console.log('loadMessages', data)
+      //   setMessages(data)
+      // })
     }
-  }, [messages, isOpen, socket, userInfo]);
+  }, [messages, isOpen, socket, userInfo])
 
   const supportHandler = () => {
-    setIsOpen(true);
-    console.log(ENDPOINT);
-    const sk = socketIOClient(ENDPOINT);
-    setSocket(sk);
-  };
+    setIsOpen(true)
+    const sk = socketIOClient(ENDPOINT)
+    setSocket(sk)
+    sk.emit('onLogin', {
+      user: userInfo._id,
+      name: userInfo.name,
+      isAdmin: userInfo.isAdmin,
+    })
+    sk.on('message', (data) => {
+      allMessages = [...allMessages, { body: data.body, name: data.name }]
+      setMessages(allMessages)
+    })
+    sk.on('loadMessages', (data) => {
+      allMessages = data
+      setMessages(allMessages)
+    })
+  }
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!messageBody.trim()) {
-      alert('Error. Please type message.');
+      alert('Error. Please type message.')
     } else {
-      setMessages([...messages, { body: messageBody, name: userInfo.name }]);
-      setMessageBody('');
+      allMessages = [...allMessages, { body: messageBody, name: userInfo.name }]
+      setMessages(allMessages)
+      setMessageBody('')
       setTimeout(() => {
         socket.emit('onMessage', {
           body: messageBody,
           name: userInfo.name,
           isAdmin: userInfo.isAdmin,
-          _id: userInfo._id,
-        });
-      }, 1000);
+          user: userInfo._id,
+        })
+      }, 1000)
     }
-  };
+  }
   const closeHandler = () => {
-    setIsOpen(false);
-  };
+    setIsOpen(false)
+  }
   return (
     <div className="chatbox">
       {!isOpen ? (
@@ -98,5 +116,5 @@ export default function ChatBox(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
